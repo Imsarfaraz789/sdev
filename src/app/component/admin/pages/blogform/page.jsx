@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-const BlogForm = ({ onSubmit, apiUrl }) => {
+const BlogForm = ({ apiUrl }) => {
   const [formData, setFormData] = useState({
     title: "",
     summary: "",
@@ -16,6 +16,8 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
     author: "",
     image: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleImageUpload = (url) => {
     setFormData((prevData) => ({ ...prevData, image: url }));
@@ -32,8 +34,15 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     try {
-      await onSubmit(apiUrl, formData);
+      const res = await fetch(apiUrl, formData);
+
+      if (!res.ok) {
+        throw new Error("Failed to submit form");
+      }
+
       setFormData({
         title: "",
         summary: "",
@@ -41,8 +50,13 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
         author: "",
         image: "",
       });
+
+      alert("Blog post submitted successfully!");
     } catch (error) {
       console.error("Error submitting form:", error);
+      alert("There was an error submitting the blog post.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -110,8 +124,9 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
       <button
         type="submit"
         className="px-4 py-2 bg-indigo-600 text-white rounded-md"
+        disabled={isSubmitting}
       >
-        Submit
+        {isSubmitting ? "Submitting..." : "Submit"}
       </button>
     </form>
   );
