@@ -1,0 +1,23 @@
+import connectDB from "@/dbConfig/db";
+import Blog from "@/model/blog";
+import { NextResponse } from "next/server";
+
+export async function DELETE(req, { params }) {
+  await connectDB();
+
+  try {
+    const { id } = params;
+    console.log("blog delte id is", id);
+    await Blog.findByIdAndDelete(id);
+    return NextResponse.json(
+      { message: "Blog deleted successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
