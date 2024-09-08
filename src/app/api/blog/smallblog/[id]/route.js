@@ -6,21 +6,17 @@ export async function GET(req, { params }) {
   await connectDB();
 
   try {
-    const { id } = params; // Correctly receive the `id` from params
+    const { id } = params;
 
     if (!id) {
-      console.error("Blog ID is not provided");
       return NextResponse.json(
         { message: "Blog ID is required" },
         { status: 400 }
       );
     }
 
-    // Exclude the current blog from the list
     const filter = { _id: { $ne: id } };
-    console.log("Correct filter value is:", filter);
 
-    // Fetch other blogs
     const blogs = await Blog.find(filter).sort({ createdAt: -1 }).limit(6);
 
     if (blogs.length === 0) {

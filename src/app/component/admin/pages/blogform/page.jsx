@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import dynamic from "next/dynamic"; // Import dynamic for client-side loading
+import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import CloudinaryUpload from "@/app/component/cloudinarywidget/page";
 import Image from "next/image";
 
-// Dynamically load ReactQuill to avoid SSR
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const BlogForm = ({ onSubmit, apiUrl }) => {
@@ -49,7 +48,6 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Title Input */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Title</label>
         <input
@@ -61,7 +59,6 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
         />
       </div>
-      {/* Summary Input */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Summary
@@ -74,7 +71,6 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
         />
       </div>
-      {/* Content Input */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Content
@@ -85,7 +81,6 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
           theme="snow"
         />
       </div>
-      {/* Author Input */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Author
@@ -99,7 +94,6 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
         />
       </div>
-      {/* Image Upload */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Image</label>
         <CloudinaryUpload onUploadSuccess={handleImageUpload} />
@@ -113,7 +107,6 @@ const BlogForm = ({ onSubmit, apiUrl }) => {
           />
         )}
       </div>
-      {/* Submit Button */}
       <button
         type="submit"
         className="px-4 py-2 bg-indigo-600 text-white rounded-md"

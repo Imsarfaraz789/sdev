@@ -23,7 +23,7 @@ const UpdateNews = ({ params }) => {
     const fetchBlogById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/news/getnews/${id}`
+          `/api/news/getnews/${id}`
         );
         const { title, summary, content, author, image } = response.data;
         setNews({ title, summary, content, author, image });
@@ -51,7 +51,7 @@ const UpdateNews = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/news/updatenews/${id}`, news);
+      await axios.put(`/api/news/updatenews/${id}`, news);
       router.push("/component/admin/slots");
     } catch (error) {
       console.error("Error updating news:", error);

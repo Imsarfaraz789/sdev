@@ -32,7 +32,6 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error adding news:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

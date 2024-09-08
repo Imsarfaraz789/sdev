@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const HomeMiddle = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/blog/getallblog`, {
+    const res = await fetch(`/api/blog/getallblog`, {
       cache: "no-cache",
     });
     const projects = await res.json();

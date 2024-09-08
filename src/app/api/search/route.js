@@ -22,7 +22,6 @@ export async function GET(req) {
 
     return NextResponse.json(results);
   } catch (error) {
-    console.error("Error searching:", error);
 
     return NextResponse.json(
       { message: "Internal server error" },

@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
 
   try {
     const blogRes = await fetch(
-      `http://localhost:3000/api/blog/getallblog/${id}`,
+      `/api/blog/getallblog/${id}`,
       { cache: "no-cache" }
     );
 
@@ -36,7 +36,7 @@ const SingleBlog = async ({ params }) => {
 
   try {
     const blogRes = await fetch(
-      `http://localhost:3000/api/blog/getallblog/${id}`,
+      `/api/blog/getallblog/${id}`,
       { cache: "no-cache" }
     );
 
@@ -47,7 +47,7 @@ const SingleBlog = async ({ params }) => {
     const project = await blogRes.json();
 
     const smallresponse = await fetch(
-      `http://localhost:3000/api/blog/smallblog/${id}`,
+      `/api/blog/smallblog/${id}`,
       { cache: "no-cache" }
     );
 

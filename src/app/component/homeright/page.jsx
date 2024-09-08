@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const HomeRight = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/news/getnews`, {
+    const res = await fetch(`/api/news/getnews`, {
       cache: "no-cache",
     });
     const projects = await res.json();

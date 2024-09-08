@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 export async function generateMetadata({ params }) {
   try {
     const id = params.id;
-    const res = await fetch(`http://localhost:3000/api/news/getnews/${id}`);
+    const res = await fetch(`/api/news/getnews/${id}`);
     const projects = await res.json();
 
     return {
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
 const SingleNews = async ({ params }) => {
   try {
     const id = params.id;
-    const res = await fetch(`http://localhost:3000/api/news/getnews/${id}`);
+    const res = await fetch(`/api/news/getnews/${id}`);
     const projects = await res.json();
 
     const updatedAt = new Date(projects.updatedAt).toLocaleDateString();

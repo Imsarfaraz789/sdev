@@ -7,7 +7,6 @@ export async function DELETE(req, { params }) {
 
   try {
     const { id } = params;
-    console.log("blog delte id is", id);
     await Blog.findByIdAndDelete(id);
     return NextResponse.json(
       { message: "Blog deleted successfully" },

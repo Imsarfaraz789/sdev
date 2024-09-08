@@ -11,7 +11,7 @@ const Blog = () => {
       <h1 className="text-3xl font-bold mb-6">Add New Blog</h1>
       <BlogForm
         onSubmit={submitBlog}
-        apiUrl="http://localhost:3000/api/blog/addblog"
+        apiUrl="/api/blog/addblog"
       />
     </div>
   );

@@ -27,7 +27,6 @@ export async function POST(req, { params }) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error updating news:", error);
     return NextResponse.json(
       {
         message: "Internal Server Erro",

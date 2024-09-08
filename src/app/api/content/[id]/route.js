@@ -9,10 +9,8 @@ export async function GET(req, { params }) {
   const { id } = params;
 
   try {
-    // Try to fetch the blog first
     let post = await Blog.findById(id).exec();
 
-    // If blog is not found, try to fetch news
     if (!post) {
       post = await News.findById(id).exec();
     }
@@ -23,7 +21,6 @@ export async function GET(req, { params }) {
 
     return NextResponse.json(post);
   } catch (error) {
-    console.error("Error fetching post:", error);
     return NextResponse.json(
       { message: "Internal server error" },
       { status: 500 }

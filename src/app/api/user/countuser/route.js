@@ -8,7 +8,6 @@ export async function GET() {
     const users = await Users.find().countDocuments();
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
-    console.error("Error fetching number of users:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }

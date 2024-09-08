@@ -13,7 +13,7 @@ const GetAllNews = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/news/getnews"
+          "/api/news/getnews"
         );
         setBlogs(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ const GetAllNews = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/news/deletenews/${id}`);
+      await axios.delete(`/api/news/deletenews/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);

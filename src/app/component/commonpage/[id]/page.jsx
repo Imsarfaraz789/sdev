@@ -14,7 +14,6 @@ const CommonPage = ({ params }) => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // Fetch the main post
         const res = await fetch(`/api/content/${id}`, { cache: "no-cache" });
 
         if (!res.ok) {
@@ -24,7 +23,6 @@ const CommonPage = ({ params }) => {
         const data = await res.json();
         setPost(data);
 
-        // Fetch related small blogs
         const smallRes = await fetch(`/api/blog/smallblog/${id}`, {
           cache: "no-cache",
         });
@@ -54,7 +52,6 @@ const CommonPage = ({ params }) => {
 
   const updateDate = new Date(post.updatedAt).toLocaleDateString();
 
-  // Sanitize the content using DOMPurify
   const cleanContent = DOMPurify.sanitize(post.content, {
     ALLOWED_TAGS: [
       "pre",
@@ -72,11 +69,11 @@ const CommonPage = ({ params }) => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 max-md:p-2 py-8">
-      <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
-        <div className="lg:w-2/3 bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 max-md:px-2 py-8">
+      <div className="flex flex-col lg:flex-row gap-8 justify-center items-start">
+        <div className="lg:w-2/3 w-full bg-white rounded-lg shadow-lg overflow-hidden">
           <Image
-            className="w-full h-80 object-cover"
+            className="w-full h-64 max-md:h-48 object-cover"
             src={post.image}
             alt={post.title}
             width={1200}
@@ -86,30 +83,41 @@ const CommonPage = ({ params }) => {
           <div className="p-6">
             <div className="flex items-center gap-4 mb-6">
               <Image
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-12 h-12 lg:w-16 lg:h-16 rounded-full object-cover"
                 src="/logo-black.png"
                 width={64}
                 height={64}
                 alt="Author"
               />
               <div className="flex flex-col">
-                <span className="font-semibold text-xl">{post.author} ✍️</span>
-                <span className="text-gray-500 text-sm">
+                <span className="font-semibold text-lg lg:text-xl">
+                  {post.author} ✍️
+                </span>
+                <span className="text-gray-500 text-sm lg:text-base">
                   Updated: {updateDate} 📅
                 </span>
               </div>
             </div>
-            <h1 className="text-4xl font-extrabold mb-6 max-md:text-3xl text-gray-900">
+            <h1 className="text-3xl lg:text-4xl font-extrabold mb-6 text-gray-900">
               {post.title} 🚀
             </h1>
-            <div className="text-lg text-gray-700 leading-relaxed">
+            <div className="text-base lg:text-lg text-gray-700 leading-relaxed">
               <div dangerouslySetInnerHTML={{ __html: cleanContent }} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-4">{smallBlog && <BlogList blogs={smallBlog} />}</div>
+      <div className="mt-8">
+        {smallBlog && (
+          <div>
+            <h2 className="text-2xl lg:text-3xl font-semibold mb-4">
+              Related Blogs
+            </h2>
+            <BlogList blogs={smallBlog} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

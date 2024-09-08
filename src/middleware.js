@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { jwtDecode } from "jwt-decode";
 
 export function middleware(request) {
-  console.log("Middleware is running");
 
   const token = request.cookies.get("token")?.value;
 

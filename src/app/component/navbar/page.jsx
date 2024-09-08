@@ -107,7 +107,6 @@ const Navbar = React.memo(() => {
             )}
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={handleSearchClick}
@@ -130,7 +129,6 @@ const Navbar = React.memo(() => {
               </svg>
             </button>
 
-            {/* Drawer toggle button */}
             <button
               onClick={handleOpenDrawer}
               className="p-2 rounded hover:bg-gray-200 transition-colors duration-300 ml-2"
@@ -155,7 +153,6 @@ const Navbar = React.memo(() => {
         </div>
       </nav>
 
-      {/* Modal for Sign In */}
       {isSignInModalOpen && (
         <SignIn onClose={() => setIsSignInModalOpen(false)} />
       )}
