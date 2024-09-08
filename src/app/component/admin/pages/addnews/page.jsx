@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-const BlogForm = () => {
+const AddNews = () => {
   const [formData, setFormData] = useState({
     title: "",
     summary: "",
@@ -133,4 +133,4 @@ const BlogForm = () => {
   );
 };
 
-export default BlogForm;
+export default AddNews;
