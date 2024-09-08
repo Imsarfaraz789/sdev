@@ -22,9 +22,7 @@ const UpdateNews = ({ params }) => {
   useEffect(() => {
     const fetchBlogById = async () => {
       try {
-        const response = await axios.get(
-          `/api/news/getnews/${id}`
-        );
+        const response = await axios.get(`/api/news/getnews/${id}`);
         const { title, summary, content, author, image } = response.data;
         setNews({ title, summary, content, author, image });
       } catch (error) {

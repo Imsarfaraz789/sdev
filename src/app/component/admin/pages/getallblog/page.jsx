@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import axios from "axios";
 import Link from "next/link";
-import { CiEdit } from "react-icons/ci"; // Import the edit icon
-import { MdDeleteOutline } from "react-icons/md"; // Import the delete icon
-import { useState, useEffect } from "react"; // Import necessary hooks
+import { CiEdit } from "react-icons/ci";
+import { MdDeleteOutline } from "react-icons/md";
+import { useState, useEffect } from "react";
 
 const Page = () => {
   const [blogs, setBlogs] = useState([]);
@@ -13,10 +13,8 @@ const Page = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get(
-          "/api/blog/getallblog"
-        );
-        setBlogs(response.data); 
+        const response = await axios.get("/api/blog/getallblog");
+        setBlogs(response.data);
       } catch (error) {
         setError("Server Error");
       }
@@ -27,7 +25,7 @@ const Page = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/api/blog/deleteblog/${id}`);
-      setBlogs(blogs.filter((blog) => blog._id !== id)); 
+      setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
     }

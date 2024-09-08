@@ -3,12 +3,11 @@ import Blog from "@/model/blog";
 import News from "@/model/news";
 import { NextResponse } from "next/server";
 
-connectDB();
-
 export async function GET(req, { params }) {
   const { id } = params;
 
   try {
+    await connectDB();
     let post = await Blog.findById(id).exec();
 
     if (!post) {

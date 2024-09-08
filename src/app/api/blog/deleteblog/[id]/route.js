@@ -3,9 +3,8 @@ import Blog from "@/model/blog";
 import { NextResponse } from "next/server";
 
 export async function DELETE(req, { params }) {
-  await connectDB();
-
   try {
+    await connectDB();
     const { id } = params;
     await Blog.findByIdAndDelete(id);
     return NextResponse.json(

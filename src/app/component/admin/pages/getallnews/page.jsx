@@ -8,13 +8,11 @@ import { useState, useEffect } from "react";
 
 const GetAllNews = () => {
   const [blogs, setBlogs] = useState([]);
-  
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get(
-          "/api/news/getnews"
-        );
+        const response = await axios.get("/api/news/getnews");
         setBlogs(response.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);

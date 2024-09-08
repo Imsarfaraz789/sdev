@@ -3,8 +3,8 @@ import Users from "@/model/user";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  await connectDB();
   try {
+    await connectDB();
     const users = await Users.find().countDocuments();
     return NextResponse.json(users, { status: 200 });
   } catch (error) {

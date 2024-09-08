@@ -3,8 +3,8 @@ import Blog from "@/model/blog";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
-  await connectDB();
   try {
+    await connectDB();
     const latestBlogs = await Blog.find().sort({ createdAt: -1 }).limit(7);
 
     if (!latestBlogs) {

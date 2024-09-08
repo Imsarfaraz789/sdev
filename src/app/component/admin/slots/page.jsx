@@ -1,11 +1,10 @@
 import React from "react";
 
 const Page = async () => {
-  // Fetching the counts from APIs
   const [blogRes, newsRes, userRes] = await Promise.all([
-    fetch(`http://localhost:3000/api/blog/countblog`),
-    fetch(`http://localhost:3000/api/news/countnews`),
-    fetch(`http://localhost:3000/api/user/countuser`),
+    fetch(`/api/blog/countblog`),
+    fetch(`/api/news/countnews`),
+    fetch(`/api/user/countuser`),
   ]);
 
   const countBlog = await blogRes.json();

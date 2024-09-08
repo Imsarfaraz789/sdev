@@ -2,9 +2,9 @@ import connectDB from "@/dbConfig/db";
 import Blog from "@/model/blog";
 import { NextResponse } from "next/server";
 
-connectDB();
 
 export async function GET() {
+  await connectDB();
   try {
     const blogs = await Blog.find().countDocuments();
     if (!blogs || blogs.length === 0) {

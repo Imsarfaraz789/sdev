@@ -2,11 +2,10 @@ import connectDB from "@/dbConfig/db";
 import Blog from "@/model/blog";
 import { NextResponse } from "next/server";
 
-connectDB();
-
 export async function GET() {
   try {
-    const blogs = await Blog.find().sort({createdAt: -1});
+    await connectDB();
+    const blogs = await Blog.find().sort({ createdAt: -1 });
     if (!blogs || blogs.length === 0) {
       return NextResponse.json({ message: "Blogs not found" }, { status: 404 });
     }

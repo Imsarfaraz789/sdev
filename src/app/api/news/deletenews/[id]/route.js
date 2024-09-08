@@ -1,11 +1,10 @@
 import connectDB from "@/dbConfig/db";
-import News from "@/model/news"
+import News from "@/model/news";
 import { NextResponse } from "next/server";
 
 export async function DELETE(req, { params }) {
-  await connectDB();
-
   try {
+    await connectDB();
     const { id } = params;
     await News.findByIdAndDelete(id);
     return NextResponse.json(
