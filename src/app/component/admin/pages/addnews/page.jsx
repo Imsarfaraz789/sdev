@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import CloudinaryUpload from "@/app/component/cloudinarywidget/page";
 import Image from "next/image";
+import axios from "axios";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -37,7 +38,7 @@ const AddNews = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch(`/api/news/addnews`, formData);
+      const res = await axios.post(`/api/news/addnews`, formData);
 
       if (!res.ok) {
         throw new Error("Failed to submit form");

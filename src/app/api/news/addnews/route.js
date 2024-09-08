@@ -3,8 +3,8 @@ import News from "@/model/news";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  await connectDB();
   try {
+    await connectDB();
     const reqBody = await req.json();
     const { title, content, author, image, summary } = reqBody;
 
