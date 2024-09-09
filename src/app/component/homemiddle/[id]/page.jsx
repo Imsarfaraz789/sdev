@@ -32,6 +32,7 @@ export async function generateMetadata({ params }) {
 }
 
 const SingleBlog = async ({ params }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
   const { id } = params;
 
   try {
