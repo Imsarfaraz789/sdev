@@ -15,7 +15,9 @@ const CommonPage = ({ params }) => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`${apiBaseUrl}/api/content/${id}`, { cache: "no-cache" });
+        const res = await fetch(`${apiBaseUrl}/api/content/${id}`, {
+          cache: "no-cache",
+        });
 
         if (!res.ok) {
           throw new Error("Failed to fetch post");
