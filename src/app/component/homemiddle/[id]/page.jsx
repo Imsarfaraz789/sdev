@@ -45,9 +45,12 @@ const SingleBlog = async ({ params }) => {
 
     const project = await blogRes.json();
 
-    const smallresponse = await fetch(`${apiBaseUrl}/api/blog/smallblog/${id}`, {
-      cache: "no-cache",
-    });
+    const smallresponse = await fetch(
+      `${apiBaseUrl}/api/blog/smallblog/${id}`,
+      {
+        cache: "no-cache",
+      }
+    );
 
     if (!smallresponse.ok) {
       throw new Error("Failed to fetch small blog post");
