@@ -8,11 +8,12 @@ import { useState, useEffect } from "react";
 
 const GetAllNews = () => {
   const [blogs, setBlogs] = useState([]);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("/api/news/getnews");
+        const response = await axios.get(`${apiBaseUrl}/api/news/getnews`);
         setBlogs(response.data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -24,7 +25,7 @@ const GetAllNews = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/news/deletenews/${id}`);
+      await axios.delete(`${apiBaseUrl}/api/news/deletenews/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);

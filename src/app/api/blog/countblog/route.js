@@ -3,8 +3,8 @@ import Blog from "@/model/blog";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  await connectDB();
   try {
+    await connectDB();
     const blogs = await Blog.find().countDocuments();
     if (!blogs || blogs.length === 0) {
       return NextResponse.json(

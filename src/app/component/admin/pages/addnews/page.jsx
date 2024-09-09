@@ -10,6 +10,7 @@ import axios from "axios";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const AddNews = () => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [formData, setFormData] = useState({
     title: "",
     summary: "",
@@ -38,7 +39,7 @@ const AddNews = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await axios.post(`/api/news/addnews`, formData);
+      const res = await axios.post(`${apiBaseUrl}/api/news/addnews`, formData);
 
       if (!res.ok) {
         throw new Error("Failed to submit form");

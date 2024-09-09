@@ -4,13 +4,13 @@ import BlogList from "../../smallblog/page";
 import DOMPurify from "dompurify";
 
 export async function generateMetadata({ params }) {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { id } = params;
 
   try {
-    const blogRes = await fetch(
-      `/api/blog/getallblog/${id}`,
-      { cache: "no-cache" }
-    );
+    const blogRes = await fetch(`${apiBaseUrl}/api/blog/getallblog/${id}`, {
+      cache: "no-cache",
+    });
 
     if (!blogRes.ok) {
       throw new Error("Failed to fetch blog post");
@@ -35,10 +35,9 @@ const SingleBlog = async ({ params }) => {
   const { id } = params;
 
   try {
-    const blogRes = await fetch(
-      `/api/blog/getallblog/${id}`,
-      { cache: "no-cache" }
-    );
+    const blogRes = await fetch(`${apiBaseUrl}/api/blog/getallblog/${id}`, {
+      cache: "no-cache",
+    });
 
     if (!blogRes.ok) {
       throw new Error("Failed to fetch blog post");
@@ -46,10 +45,9 @@ const SingleBlog = async ({ params }) => {
 
     const project = await blogRes.json();
 
-    const smallresponse = await fetch(
-      `/api/blog/smallblog/${id}`,
-      { cache: "no-cache" }
-    );
+    const smallresponse = await fetch(`${apiBaseUrl}/api/blog/smallblog/${id}`, {
+      cache: "no-cache",
+    });
 
     if (!smallresponse.ok) {
       throw new Error("Failed to fetch small blog post");

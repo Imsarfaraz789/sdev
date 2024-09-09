@@ -3,9 +3,10 @@ import LatestBlog from "../../latest/page";
 import DOMPurify from "dompurify";
 
 export async function generateMetadata({ params }) {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   try {
     const id = params.id;
-    const res = await fetch(`/api/news/getnews/${id}`);
+    const res = await fetch(`${apiBaseUrl}/api/news/getnews/${id}`);
     const projects = await res.json();
 
     return {
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }) {
 const SingleNews = async ({ params }) => {
   try {
     const id = params.id;
-    const res = await fetch(`/api/news/getnews/${id}`);
+    const res = await fetch(`${apiBaseUrl}/api/news/getnews/${id}`);
     const projects = await res.json();
 
     const updatedAt = new Date(projects.updatedAt).toLocaleDateString();

@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 const LatestBlog = async () => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   try {
-    const res = await fetch(`/api/blog/getlatest`, {
+    const res = await fetch(`${apiBaseUrl}/api/blog/getlatest`, {
       cache: "no-cache",
     });
     const projects = await res.json();

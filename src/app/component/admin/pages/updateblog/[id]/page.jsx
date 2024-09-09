@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const UpdateBlog = ({ params }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { id } = params;
   const router = useRouter();
 
@@ -23,7 +24,7 @@ const UpdateBlog = ({ params }) => {
     const fetchBlogById = async () => {
       try {
         const response = await axios.get(
-          `/api/blog/getallblog/${id}`
+          `${apiBaseUrl}/api/blog/getallblog/${id}`
         );
         const { title, summary, content, author, image } = response.data;
         setBlog({ title, summary, content, author, image });
@@ -50,7 +51,7 @@ const UpdateBlog = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/blog/updateblog/${id}`, blog);
+      await axios.put(`${apiBaseUrl}/api/blog/updateblog/${id}`, blog);
       router.push("/component/admin/slots");
     } catch (error) {
       console.error("Error updating blog:", error);

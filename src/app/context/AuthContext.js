@@ -6,6 +6,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
@@ -13,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("/api/auth/isAuthenticated");
+        const response = await fetch(`${apiBaseUrl}/api/auth/isAuthenticated`);
         const data = await response.json();
         if (response.ok) {
           setIsAuthenticated(data.isAuthenticated);
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("/api/auth/isAuthenticated");
+      const response = await fetch(`${apiBaseUrl}/api/auth/isAuthenticated`);
       const data = await response.json();
       if (response.ok) {
         setIsAuthenticated(data.isAuthenticated);
@@ -50,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch("/api/auth/logout");
+      await fetch(`${apiBaseUrl}/api/auth/logout`);
       setIsAuthenticated(false);
       setUser(null);
       router.push("/");

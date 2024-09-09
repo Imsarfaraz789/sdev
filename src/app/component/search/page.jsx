@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { IoCloseOutline } from "react-icons/io5";
 
 const SearchModal = ({ onClose }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +20,7 @@ const SearchModal = ({ onClose }) => {
 
       setIsLoading(true);
       try {
-        const res = await fetch(`/api/search?query=${query}`);
+        const res = await fetch(`${apiBaseUrl}/api/search?query=${query}`);
         const data = await res.json();
         setSearchResults(data);
       } catch (error) {
@@ -38,7 +39,7 @@ const SearchModal = ({ onClose }) => {
 
   const handleClick = (id) => {
     onClose();
-    router.push(`/component/commonpage/${id}`);
+    router.push(`${apiBaseUrl}/component/commonpage/${id}`);
   };
 
   return (

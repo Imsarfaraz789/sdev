@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 const HomeRight = async () => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   try {
-    const res = await fetch(`/api/news/getnews`, {
+    const res = await fetch(`${apiBaseUrl}/api/news/getnews`, {
       cache: "no-cache",
     });
     const projects = await res.json();

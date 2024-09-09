@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const HomeMiddle = async () => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   try {
-    const res = await fetch(`/api/blog/getallblog`, {
+    const res = await fetch(`${apiBaseUrl}/api/blog/getallblog`, {
       cache: "no-cache",
     });
     const projects = await res.json();

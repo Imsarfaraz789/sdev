@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const UpdateNews = ({ params }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { id } = params;
   const router = useRouter();
 
@@ -22,7 +23,7 @@ const UpdateNews = ({ params }) => {
   useEffect(() => {
     const fetchBlogById = async () => {
       try {
-        const response = await axios.get(`/api/news/getnews/${id}`);
+        const response = await axios.get(`${apiBaseUrl}/api/news/getnews/${id}`);
         const { title, summary, content, author, image } = response.data;
         setNews({ title, summary, content, author, image });
       } catch (error) {
@@ -49,7 +50,7 @@ const UpdateNews = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/news/updatenews/${id}`, news);
+      await axios.put(`${apiBaseUrl}/api/news/updatenews/${id}`, news);
       router.push("/component/admin/slots");
     } catch (error) {
       console.error("Error updating news:", error);

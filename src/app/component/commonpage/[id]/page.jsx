@@ -6,6 +6,7 @@ import DOMPurify from "dompurify";
 import BlogList from "../../smallblog/page";
 
 const CommonPage = ({ params }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { id } = params;
   const [post, setPost] = useState(null);
   const [smallBlog, setSmallBlog] = useState(null);
@@ -14,7 +15,7 @@ const CommonPage = ({ params }) => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/content/${id}`, { cache: "no-cache" });
+        const res = await fetch(`${apiBaseUrl}/api/content/${id}`, { cache: "no-cache" });
 
         if (!res.ok) {
           throw new Error("Failed to fetch post");
@@ -23,7 +24,7 @@ const CommonPage = ({ params }) => {
         const data = await res.json();
         setPost(data);
 
-        const smallRes = await fetch(`/api/blog/smallblog/${id}`, {
+        const smallRes = await fetch(`${apiBaseUrl}/api/blog/smallblog/${id}`, {
           cache: "no-cache",
         });
 

@@ -7,13 +7,14 @@ import { MdDeleteOutline } from "react-icons/md";
 import { useState, useEffect } from "react";
 
 const Page = () => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("/api/blog/getallblog");
+        const response = await axios.get(`${apiBaseUrl}/api/blog/getallblog`);
         setBlogs(response.data);
       } catch (error) {
         setError("Server Error");
@@ -24,7 +25,7 @@ const Page = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/blog/deleteblog/${id}`);
+      await axios.delete(`${apiBaseUrl}/api/blog/deleteblog/${id}`);
       setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
