@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Page = () => {
+const AddBlogs = () => {
   return (
     <div className="flex items-center justify-center shadow-lg ">
       <div className="text-center p-6">
@@ -13,4 +13,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default AddBlogs;

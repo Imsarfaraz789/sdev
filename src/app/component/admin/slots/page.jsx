@@ -1,10 +1,11 @@
 import React from "react";
 
 const Page = async () => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [blogRes, newsRes, userRes] = await Promise.all([
-    fetch(`/api/blog/countblog`),
-    fetch(`/api/news/countnews`),
-    fetch(`/api/user/countuser`),
+    fetch(`${apiBaseUrl}/api/blog/countblog`),
+    fetch(`${apiBaseUrl}/api/news/countnews`),
+    fetch(`${apiBaseUrl}/api/user/countuser`),
   ]);
 
   const countBlog = await blogRes.json();

@@ -2,7 +2,6 @@ import connectDB from "@/dbConfig/db";
 import Blog from "@/model/blog";
 import { NextResponse } from "next/server";
 
-
 export async function GET() {
   await connectDB();
   try {
