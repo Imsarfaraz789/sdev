@@ -19,7 +19,7 @@ const nextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://sdev-pfc9-9n6rashxf-sarfaraz-haider-alis-projects.vercel.app/", // Replace '*' with your allowed origin (e.g., 'https://your-domain.com')
+            value: "*", // Replace '*' with your allowed origin (e.g., 'https://your-domain.com')
           },
           {
             key: "Access-Control-Allow-Methods",
